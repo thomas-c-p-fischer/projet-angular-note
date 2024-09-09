@@ -1,0 +1,8 @@
+{
+  "users": [
+    { "id": 1, "login": "y", "pwd": "y" }
+  ],
+  "cards": [],
+  "tags": [],
+  "columns": []
+}
