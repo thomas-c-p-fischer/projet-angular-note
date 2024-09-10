@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <div class="tags-section mb-4">
+    <span *ngFor="let tag of tags" class="btn btn-secondary me-2" (click)="filterCardsByTag(tag)">
+      {{ tag.label }}
+    </span>
+    <button class="btn btn-outline-primary" (click)="showTagForm = true">+ Ajouter un tag</button>
+  </div>
+
+  <div *ngIf="showTagForm">
+    <form [formGroup]="tagForm" (ngSubmit)="addTag()">
+      <div class="mb-3">
+        <label for="label" class="form-label">Nom du tag</label>
+        <input type="text" id="label" class="form-control" formControlName="label">
+      </div>
+      <button type="submit" class="btn btn-primary">Ajouter le tag</button>
+      <button type="button" class="btn btn-secondary" (click)="showTagForm = false">Annuler</button>
+    </form>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let column of columns" class="col-md-3">
+      <h4>{{ column.label }}</h4>
+      <button class="btn btn-outline-primary mb-3" (click)="showCardForm(column.id)">+ Ajouter une carte</button>
+
+      <div *ngFor="let card of getCardsByColumn(column.id)">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title" (click)="showAnswer(card)">{{ card.question }}</h5>
+            <ng-container *ngIf="card.description">
+              <p class="card-text">{{ card.description }}</p>
+            </ng-container>
+            <button class="btn btn-info m-1" (click)="moveCardToPreviousColumn(card)">< Précédente</button>
+            <button class="btn btn-info m-1" (click)="moveCardToNextColumn(card)">Suivante ></button>
+            <ng-container *ngIf="card.isAnswerShown">
+              <p class="card-text m-1">{{ card.answer }}</p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showCardFormBool">
+    <div *ngIf="selectedColumnId !== null">
+      <h3>Ajouter une carte pour la colonne {{ selectedColumnId }}</h3>
+      <form [formGroup]="cardForm" (ngSubmit)="addCard()">
+        <div class="mb-3">
+          <label for="question" class="form-label">Question</label>
+          <input type="text" id="question" class="form-control" formControlName="question">
+        </div>
+        <div class="mb-3">
+          <label for="answer" class="form-label">Réponse</label>
+          <input type="text" id="answer" class="form-control" formControlName="answer">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" class="form-control" formControlName="description"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="tag" class="form-label">Tag</label>
+          <select id="tag" class="form-select" formControlName="tag">
+            <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.label }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter la carte</button>
+      </form>
+    </div>
+  </div>
+</div>

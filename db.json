@@ -1,8 +1,75 @@
 {
-  "users": [
-    { "id": 1, "login": "y", "pwd": "y" }
+  "user": [
+    {
+      "id": "1",
+      "login": "y",
+      "pwd": "y"
+    }
   ],
-  "cards": [],
-  "tags": [],
-  "columns": []
+  "card": [
+    {
+      "id": "1",
+      "question": "De quel type est le pokémon Salamèche ?",
+      "answer": "feu",
+      "description": "",
+      "tag": "1",
+      "column": "4"
+    },
+    {
+      "id": "2",
+      "question": "Quel technique Jiraya apprend-t-il à Naruto ?",
+      "answer": "rasengan",
+      "description": "Le nom français est l'orbe tourbillonant",
+      "tag": "2",
+      "column": "4"
+    },
+    {
+      "id": "f738",
+      "question": "Qui est le premier Pokémon de Sacha ?",
+      "answer": "pikachu",
+      "description": "souris electrique jaune",
+      "tag": "1",
+      "column": "3"
+    }
+  ],
+  "tag": [
+    {
+      "id": "1",
+      "label": "Pokémon"
+    },
+    {
+      "id": "2",
+      "label": "Naruto"
+    },
+    {
+      "id": "3",
+      "label": "One Piece"
+    },
+    {
+      "id": "4",
+      "label": "Oshi no ko"
+    }
+  ],
+  "column": [
+    {
+      "id": "1",
+      "label": "Relis tout depuis le début",
+      "order": 1
+    },
+    {
+      "id": "2",
+      "label": "Relis un peu",
+      "order": 2
+    },
+    {
+      "id": "3",
+      "label": "T'es un fan !",
+      "order": 3
+    },
+    {
+      "id": "4",
+      "label": "The Goat",
+      "order": 4
+    }
+  ]
 }
