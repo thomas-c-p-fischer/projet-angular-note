@@ -34,12 +34,19 @@
             <ng-container *ngIf="card.isAnswerShown">
               <p class="card-text m-1">{{ card.answer }}</p>
             </ng-container>
+            <button (click)="openModal(card)">Proposer une réponse</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  <app-modal #modal title="Proposer une réponse">
+    <p>{{ selectedCard?.question }}</p>
+    <textarea [(ngModel)]="proposedAnswer"></textarea>
+    <div class="modal-footer">
+      <button class="btn btn-success" (click)="compareAnswer()">Comparer</button>
+    </div>
+  </app-modal>
   <div *ngIf="showCardFormBool">
     <div *ngIf="selectedColumnId !== null">
       <h3>Ajouter une carte pour la colonne {{ selectedColumnId }}</h3>

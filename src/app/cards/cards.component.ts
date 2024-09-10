@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { CardService } from '../services/card.service';
 import { TagService } from '../services/tag.service';
 import { Card } from '../models/card.model';
@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {Column} from "../models/column.model";
 import {ColumnService} from "../services/column.service";
 import {NgForOf, NgIf} from "@angular/common";
+import {ModalComponent} from "../modal/modal.component";
 
 interface DisplayCard extends Card {
   isAnswerShown?: boolean;
@@ -17,9 +18,17 @@ interface DisplayCard extends Card {
   standalone: true,
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css'],
-  imports: [FormsModule, ReactiveFormsModule, NgForOf, NgIf]
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgForOf,
+    NgIf,
+    ModalComponent
+  ]
 })
 export class CardsComponent implements OnInit {
+  @ViewChild('modal') modal!: ModalComponent;
+  proposedAnswer: string = '';
   cardForm: FormGroup;
   tagForm: FormGroup;
   tags: Tag[] = [];
@@ -29,6 +38,7 @@ export class CardsComponent implements OnInit {
   showCardFormBool: boolean = false;
   showTagForm: boolean = false;
   selectedColumnId: string | null = null;
+  selectedCard: DisplayCard | null = null;
 
   constructor(
     private cardService: CardService,
@@ -183,5 +193,20 @@ export class CardsComponent implements OnInit {
    */
   showAnswer(card: DisplayCard) {
     card.isAnswerShown = !card.isAnswerShown;
+  }
+
+  openModal(card: DisplayCard) {
+    this.selectedCard = card;
+    this.modal.open();
+  }
+
+  compareAnswer() {
+    if (this.selectedCard) {
+      if (this.proposedAnswer.trim().toLowerCase() === this.selectedCard.answer.trim().toLowerCase()) {
+        alert('Succès: Votre réponse est correcte !');
+      } else {
+        alert('Erreur: Réponse incorrecte.');
+      }
+    }
   }
 }
