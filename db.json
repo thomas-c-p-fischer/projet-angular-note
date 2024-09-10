@@ -30,6 +30,14 @@
       "description": "souris electrique jaune",
       "tag": "1",
       "column": "3"
+    },
+    {
+      "id": "2a44",
+      "question": "Qui est le premier à rejoindre l'équipage de Luffy ?",
+      "answer": "Zorro",
+      "description": "Il a les cheveux vert.",
+      "tag": "3",
+      "column": "2"
     }
   ],
   "tag": [
