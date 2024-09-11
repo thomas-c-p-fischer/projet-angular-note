@@ -1,27 +1,31 @@
-# ProjetAngularNoteThomas
+# Memopus Angular Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+## Installation
+1. installer les dépendances :
+    `npm  install`
+    `npm install json-server --save`
+    `npm install bootstrap@5.3.3`
 
-## Development server
+## Lancement de l'application
+2. démarrer le sever json et lancer l'application :
+    `npm run start:json-server` ==> http://localhost:3000/ et ne pas oubié le fichier db.json à la racin du projet
+    `ng serve` ==> http://localhost:4200/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Point clés
+3. s'authentifier :
+    -login : y
+    -pwd : y
 
-## Code scaffolding
+4. services :
+    Les services sont responsables de la récupération, l'ajout et la mise à jour des données.
+        -les observables et les subscriptions :
+            les composants récupère les données de façon asynchrone en faisant appel au service. Le service return un flux d'observable auquel le composant souscrit pour pouvoir recevoir les mises à jour.
+        - mise à jour en temps réel:
+            quand un utilisateur ajoute un card ou un tag, le service envoit la données mise à jour au serveur, et le composant lui  rafraîchit sa vue en souscrivant au flux mis à jour.
+    Par exemple dans l'application :
+        -CardService gère les actions CRUD de Card
+        -TagService gère les actions CRUD de Tag
+        -Column récupère et tri Column
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+5. la modal de réponse :
+    Pour la modal, j'ai choisi de créer un composant modal personnalisé. Le ts de la modal définit la logique de la modal et dans le ts de card on gère les actions de déclenchement de la modal et la logique de comparaison des réponses.
